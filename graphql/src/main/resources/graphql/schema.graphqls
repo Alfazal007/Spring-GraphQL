@@ -1,0 +1,59 @@
+type Courses {
+    courseId: ID!
+    name: String
+    platform: String
+    teacher: Teacher
+}
+type Teacher {
+    teacherId: ID!
+    name: String
+    course: Courses
+    student: [Student!]
+}
+type Student {
+    studentId: ID!
+    name: String
+    teacher: Teacher
+}
+type Query {
+    allCourses: [Courses!]
+    allStudents: [Student!]
+    allTeachers: [Teacher!]
+    courses(courseId: ID!): Courses
+    teacher(teacherId: ID!): Teacher
+    student(studentId: ID!): Student
+}
+
+type Mutation {
+    deletestudent(studentId: ID!): Student
+    editstudent(student: UpdateStudent!, id: ID!): Student
+    studentinput(studentInput: StudentInput!): Student
+    deleteteacher(id: ID!): Teacher
+    editteacher(teacher: TeacherInputPut!, id:ID!): Teacher
+    addteacher(teacher: TeacherInputPut!): Teacher
+    deleteCourse(id: ID!): Courses
+    editcourse(course: CourseEdit!, id: ID!): Courses
+    addcourse(course: CourseEdit!): Courses
+}
+input UpdateStudent {
+    name: String,
+    teacher: TeacherInput
+}
+input TeacherInput {
+    teacherId: ID!
+}
+input StudentInput {
+    name: String
+    teacher: TeacherInput
+}
+input TeacherInputPut {
+    name: String
+    course: CourseInput
+}
+input CourseInput {
+    courseId: ID!
+}
+input CourseEdit {
+    name: String
+    platform: String
+}
