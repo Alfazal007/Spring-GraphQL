@@ -1,0 +1,172 @@
+// courses
+get operations
+
+query {
+    allCourses {
+        name,
+        teacher {
+            name
+        }
+    }
+}
+
+query {
+    courses(courseId: 8) {
+        name,
+        teacher {
+            name
+        }
+    }
+}
+
+// post operations
+mutation {
+    addcourse(course: {name: "new course", platform: "new platform"}) {
+        name
+        platform
+    }
+}
+
+// put operations
+mutation {
+    editcourse(course: {name: "updated course"}, id: 14) {
+        name
+        platform
+        courseId
+    }
+}
+
+// delete operations
+mutation {
+    deleteCourse(id: 14) {
+        courseId,
+        name
+    }
+}
+
+
+// teachers
+get operations
+query {
+    allTeachers {
+        name,
+        course {
+            name,
+            courseId
+        }
+        teacherId
+    }
+}
+
+query {
+    teacher(teacherId: 34) {
+        name,
+        course {
+            name,
+            courseId
+        }
+        teacherId,
+    }
+}
+
+query {
+    teacher(teacherId: 34) {
+        name,
+        course {
+            name,
+            courseId
+        }
+        teacherId,
+        student {
+            name
+        }
+    }
+}
+
+// post operation
+mutation {
+    addteacher(teacher : {
+        name: "New teacher"
+    }) {
+        name
+    }
+}
+
+// put operation
+mutation {
+    editteacher(teacher : {
+        course: {
+            courseId: 15
+        }
+    }, id: 40) {
+        name
+    }
+}
+
+// delete operation --- one to one mapping issue
+mutation {
+    deleteteacher(id: 41) {
+        teacherId,
+        name
+    }
+}
+
+// students
+
+// get all students
+query {
+    allStudents {
+        name,
+        teacher {
+            name,
+            course {
+                name
+            }
+        }
+    }
+}
+
+// get single student
+query {
+    student(studentId: 41) {
+        name,
+        teacher {
+            name,
+            course {
+                name
+            }
+        }
+    }
+}
+
+//post a new student
+mutation {
+    studentinput(studentInput: {
+        name: "New Student",
+        teacher: {
+            teacherId: 40
+        }
+    }) {
+        name,
+        studentId
+    }
+}
+
+// put operation
+mutation {
+    editstudent(student: {
+        teacher: {
+            teacherId: 33
+        }
+    }, id: 50) {
+        name,
+        studentId
+    }
+}
+
+// delete a student
+mutation {
+    deletestudent(studentId: 49) {
+        name
+    }
+}
