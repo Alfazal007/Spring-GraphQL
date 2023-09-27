@@ -53,7 +53,7 @@ query {
         course {
             name,
             courseId
-        }
+        },
         teacherId
     }
 }

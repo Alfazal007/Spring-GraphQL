@@ -8,7 +8,7 @@ public class GraphqlApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GraphqlApplication.class, args);
-		System.out.println("Shanks is here");
+		System.out.println("Server started at port 8080 ");
 	}
 
 }
